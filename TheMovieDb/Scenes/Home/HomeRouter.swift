@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol HomeRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routerToMovies()
 }
 
 protocol HomeDataPassing {
@@ -25,4 +25,18 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     var dataStore: HomeDataStore?
     
     // MARK: Routing
+    func routerToMovies() {
+        let destinationVC = MoviesViewController()
+        var destinationDS = destinationVC.router?.dataStore
+        passDataToMovie(source: dataStore!, destination: &destinationDS!)
+        navigateToMovie(source: viewController!, destination: destinationVC )
+    }
+    
+    func passDataToMovie(source: HomeDataStore, destination: inout MoviesDataStore) {
+        destination.movies = source.movies
+    }
+    
+    func navigateToMovie(source: HomeViewController, destination: MoviesViewController) {
+        source.show(destination, sender: nil)
+    }
 }
