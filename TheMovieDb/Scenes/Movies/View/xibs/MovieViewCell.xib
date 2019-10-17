@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="gTV-IL-0wX" customClass="MovieViewCell" customModule="TheMovieDb" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="245" height="374"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="245" height="374"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie" translatesAutoresizingMaskIntoConstraints="NO" id="Vp9-73-Kpe">
+                        <rect key="frame" x="0.0" y="0.0" width="245" height="374"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Vp9-73-Kpe" secondAttribute="bottom" id="LW5-Uv-akb"/>
+                <constraint firstAttribute="trailing" secondItem="Vp9-73-Kpe" secondAttribute="trailing" id="Sno-Le-tgC"/>
+                <constraint firstItem="Vp9-73-Kpe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="US6-xn-0oQ"/>
+                <constraint firstItem="Vp9-73-Kpe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aF7-CX-QoM"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="182" height="354"/>
+            <connections>
+                <outlet property="poster" destination="Vp9-73-Kpe" id="Eja-gt-OcW"/>
+            </connections>
+            <point key="canvasLocation" x="172" y="38.680659670164921"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="movie" width="2000" height="3000"/>
+    </resources>
+</document>

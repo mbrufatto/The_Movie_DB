@@ -90,6 +90,6 @@ class HomeViewController: UIViewController, HomeDisplayLogic {
     
     func displayInitialMovies(viewModel: HomeScene.Load.ViewModel) {
         homeView.activity.stopAnimating()
-        print(viewModel.movies)
+        router?.routerToMovies()
     }
 }
