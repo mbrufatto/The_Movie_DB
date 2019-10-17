@@ -17,19 +17,20 @@ protocol HomeBusinessLogic {
 }
 
 protocol HomeDataStore {
-    //var name: String { get set }
+    var movies: [Movie]? { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
-    //var name: String = ""
+    var movies: [Movie]?
     
     // MARK: Do something
     
     func doRequestMovies(request: HomeScene.Load.Request) {
         worker = HomeWorker()
         worker?.doRequestMovies(completion: { movies in
+            self.movies = movies
             let response = HomeScene.Load.Response(movies: movies)
             self.presenter?.presentInitialMovies(response: response)
         })
