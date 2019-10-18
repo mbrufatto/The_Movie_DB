@@ -14,6 +14,7 @@ import UIKit
 
 protocol MoviesDisplayLogic: class {
     func displayMovies(viewModel: MoviesScene.Load.ViewModel)
+    func displayToMovieDetail(viewModel: MoviesScene.MoviesToMovie.ViewModel)
 }
 
 class MoviesViewController: UIViewController, MoviesDisplayLogic {
@@ -22,7 +23,8 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     let moviesView = MoviesView()
     var arrayMovies = [Movie]()
-
+    var totalPages: Int = 0
+    var totalResults: Int = 0
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -72,6 +74,8 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         
         title = "Filmes"
         
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         moviesView.collectionView.register(UINib(nibName: "MovieViewCell", bundle: nil), forCellWithReuseIdentifier: MovieViewCell.cellIdentifier)
         
         moviesView.collectionView.dataSource = self
@@ -87,6 +91,12 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     func displayMovies(viewModel: MoviesScene.Load.ViewModel) {
         arrayMovies = viewModel.movies
+        print(viewModel.totalPages)
+        print(viewModel.totalResults)
+    }
+    
+    func displayToMovieDetail(viewModel: MoviesScene.MoviesToMovie.ViewModel) {
+        router?.routerToMovieDetail()
     }
 }
 
@@ -95,9 +105,9 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
 extension MoviesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let event = arrayEvents[indexPath.row]
-//        let request = EventScene.EventDetail.Request(event: event, user: user!)
-//        interactor?.doLoadEventDetail(request: request)
+        let movie = arrayMovies[indexPath.row]
+        let request = MoviesScene.MoviesToMovie.Request(movie: movie)
+        interactor?.doLoadMovieDetail(request: request)
     }
 }
 

@@ -34,6 +34,8 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     
     func passDataToMovie(source: HomeDataStore, destination: inout MoviesDataStore) {
         destination.movies = source.movies
+        destination.totalPage = source.totalPages
+        destination.totalResults = source.totalResults
     }
     
     func navigateToMovie(source: HomeViewController, destination: MoviesViewController) {
