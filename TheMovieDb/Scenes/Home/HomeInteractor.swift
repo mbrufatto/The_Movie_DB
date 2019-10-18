@@ -18,20 +18,26 @@ protocol HomeBusinessLogic {
 
 protocol HomeDataStore {
     var movies: [Movie]? { get set }
+    var totalPages: Int? { get set }
+    var totalResults: Int? { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
     var movies: [Movie]?
+    var totalPages: Int?
+    var totalResults: Int?
     
     // MARK: Do something
     
     func doRequestMovies(request: HomeScene.Load.Request) {
         worker = HomeWorker()
-        worker?.doRequestMovies(completion: { movies in
-            self.movies = movies
-            let response = HomeScene.Load.Response(movies: movies)
+        worker?.doRequestMovies(completion: { movieBase in
+            self.movies = movieBase.movies
+            self.totalPages = movieBase.totalPages
+            self.totalResults = movieBase.totalResults
+            let response = HomeScene.Load.Response(totalPages: movieBase.totalPages, totalResults: movieBase.totalResults, movies: movieBase.movies)
             self.presenter?.presentInitialMovies(response: response)
         })
     }

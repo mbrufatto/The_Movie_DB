@@ -22,7 +22,7 @@ class HomePresenter: HomePresentationLogic {
     // MARK: Do something
     
     func presentInitialMovies(response: HomeScene.Load.Response) {
-        let viewModel = HomeScene.Load.ViewModel(movies: response.movies)
+        let viewModel = HomeScene.Load.ViewModel(totalPages: response.totalPages, totalResults: response.totalResults ,movies: response.movies)
         viewController?.displayInitialMovies(viewModel: viewModel)
     }
 }

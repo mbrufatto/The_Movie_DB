@@ -14,21 +14,32 @@ import UIKit
 
 protocol MoviesBusinessLogic {
     func doLoadMovies(request: MoviesScene.Load.Request)
+    func doLoadMovieDetail(request: MoviesScene.MoviesToMovie.Request)
 }
 
 protocol MoviesDataStore {
     var movies: [Movie]? { get set }
+    var movie: Movie? { get set }
+    var totalPage: Int? { get set }
+    var totalResults: Int? { get set }
 }
 
 class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     var presenter: MoviesPresentationLogic?
     var worker: MoviesWorker?
     var movies: [Movie]?
+    var movie: Movie?
+    var totalPage: Int?
+    var totalResults: Int?
     
     func doLoadMovies(request: MoviesScene.Load.Request) {
-        let response = MoviesScene.Load.Response(movies: movies!)
+        let response = MoviesScene.Load.Response(totalPages: totalPage!, totalResults: totalResults!, movies: movies!)
         presenter?.presentMovies(response: response)
     }
     
-    
+    func doLoadMovieDetail(request: MoviesScene.MoviesToMovie.Request) {
+        self.movie = request.movie
+        let response = MoviesScene.MoviesToMovie.Response(movie: request.movie)
+        presenter?.presentMovieDetail(response: response)
+    }
 }

@@ -18,7 +18,7 @@ class Movie: Codable {
     var backdropPath: String = ""
     var originalLanguage: String = ""
     var originalTitle: String = ""
-    var genreIds: [Int] = []
+    var genres: [Genre] = []
     var title: String = ""
     var voteAverage: Double = 0.0
     var overview: String = ""
@@ -33,11 +33,11 @@ class Movie: Codable {
         case backdropPath = "backdrop_path"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
-        case genreIds = "genre_ids"
         case title
         case voteAverage = "vote_average"
         case overview
         case releaseDate = "release_date"
+        case genres
     }
     
     init() {}
@@ -53,11 +53,11 @@ class Movie: Codable {
         backdropPath = try! container.decode(String.self, forKey: .backdropPath)
         originalTitle = try! container.decode(String.self, forKey: .originalTitle)
         originalLanguage = try! container.decode(String.self, forKey: .originalLanguage)
-        genreIds = try! container.decode([Int].self, forKey: .genreIds)
         title = try! container.decode(String.self, forKey: .title)
         voteAverage = try! container.decode(Double.self, forKey: .voteAverage)
         overview = try! container.decode(String.self, forKey: .overview)
         releaseDate = try! container.decode(String.self, forKey: .releaseDate)
+        genres = try! container.decodeIfPresent([Genre].self, forKey: .genres) ?? []
     }
     
 }

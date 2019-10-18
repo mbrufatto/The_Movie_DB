@@ -20,9 +20,13 @@ enum HomeScene {
             let page: Int
         }
         struct Response {
+            let totalPages: Int
+            let totalResults: Int
             let movies: [Movie]
         }
         struct ViewModel {
+            let totalPages: Int
+            let totalResults: Int
             let movies: [Movie]
         }
     }
