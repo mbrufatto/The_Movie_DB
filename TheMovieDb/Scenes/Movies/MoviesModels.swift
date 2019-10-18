@@ -17,6 +17,7 @@ enum MoviesScene {
     
     enum Load {
         struct Request {
+            let currentPage: Int
         }
         struct Response {
             let totalPages: Int

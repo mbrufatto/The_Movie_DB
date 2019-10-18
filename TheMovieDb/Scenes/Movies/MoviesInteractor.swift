@@ -20,7 +20,7 @@ protocol MoviesBusinessLogic {
 protocol MoviesDataStore {
     var movies: [Movie]? { get set }
     var movie: Movie? { get set }
-    var totalPage: Int? { get set }
+    var totalPages: Int? { get set }
     var totalResults: Int? { get set }
 }
 
@@ -29,12 +29,23 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
     var worker: MoviesWorker?
     var movies: [Movie]?
     var movie: Movie?
-    var totalPage: Int?
+    var totalPages: Int?
     var totalResults: Int?
     
     func doLoadMovies(request: MoviesScene.Load.Request) {
-        let response = MoviesScene.Load.Response(totalPages: totalPage!, totalResults: totalResults!, movies: movies!)
-        presenter?.presentMovies(response: response)
+        worker = MoviesWorker()
+        if request.currentPage > 1 {
+            worker?.doRequestMovies(page: request.currentPage, completion: { movieBase in
+                self.movies = movieBase.movies
+                self.totalPages = movieBase.totalPages
+                self.totalResults = movieBase.totalResults
+                let response = MoviesScene.Load.Response(totalPages: self.totalPages!, totalResults: self.totalResults!, movies: self.movies!)
+                self.presenter?.presentMovies(response: response)
+            })
+        } else {
+            let response = MoviesScene.Load.Response(totalPages: totalPages!, totalResults: totalResults!, movies: movies!)
+            presenter?.presentMovies(response: response)
+        }
     }
     
     func doLoadMovieDetail(request: MoviesScene.MoviesToMovie.Request) {
