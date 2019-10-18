@@ -45,18 +45,18 @@ class Movie: Codable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try! container.decode(Int.self, forKey: .id)
-        popularity = try! container.decode(Double.self, forKey: .popularity)
-        voteCount = try! container.decode(Int.self, forKey: .voteCount)
-        posterPath = try! container.decode(String.self, forKey: .posterPath)
-        adult = try! container.decode(Bool.self, forKey: .adult)
-        backdropPath = try! container.decode(String.self, forKey: .backdropPath)
-        originalTitle = try! container.decode(String.self, forKey: .originalTitle)
-        originalLanguage = try! container.decode(String.self, forKey: .originalLanguage)
-        title = try! container.decode(String.self, forKey: .title)
-        voteAverage = try! container.decode(Double.self, forKey: .voteAverage)
-        overview = try! container.decode(String.self, forKey: .overview)
-        releaseDate = try! container.decode(String.self, forKey: .releaseDate)
+        id = try! container.decodeIfPresent(Int.self, forKey: .id) ?? 0
+        popularity = try! container.decodeIfPresent(Double.self, forKey: .popularity) ?? 0.0
+        voteCount = try! container.decodeIfPresent(Int.self, forKey: .voteCount) ?? 0
+        posterPath = try! container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
+        adult = try! container.decodeIfPresent(Bool.self, forKey: .adult) ?? false
+        backdropPath = try! container.decodeIfPresent(String.self, forKey: .backdropPath) ?? ""
+        originalTitle = try! container.decodeIfPresent(String.self, forKey: .originalTitle) ?? ""
+        originalLanguage = try! container.decodeIfPresent(String.self, forKey: .originalLanguage) ?? ""
+        title = try! container.decodeIfPresent(String.self, forKey: .title) ?? ""
+        voteAverage = try! container.decodeIfPresent(Double.self, forKey: .voteAverage) ?? 0.0
+        overview = try! container.decodeIfPresent(String.self, forKey: .overview) ?? ""
+        releaseDate = try! container.decodeIfPresent(String.self, forKey: .releaseDate) ?? ""
         genres = try! container.decodeIfPresent([Genre].self, forKey: .genres) ?? []
     }
     

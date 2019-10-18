@@ -13,6 +13,9 @@
 import UIKit
 
 class MoviesWorker {
-  func doSomeWork() {
-  }
+    func doRequestMovies(page: Int = 1, completion: @escaping(MovieBase) -> Void) {
+        NetworkManager.shared.fetchMovies(page: page) { movies in
+            completion(movies)
+        }
+    }
 }

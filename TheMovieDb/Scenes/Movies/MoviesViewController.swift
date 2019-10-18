@@ -23,9 +23,10 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     let moviesView = MoviesView()
     var arrayMovies = [Movie]()
+    
+    var currentPage: Int = 1
     var totalPages: Int = 0
     var totalResults: Int = 0
-    // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -84,19 +85,39 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         loadData()
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            if self.currentPage < totalPages  {
+                self.currentPage += 1
+                loadData()
+            }
+        }
+    }
+    
     func loadData() {
-        let request = MoviesScene.Load.Request()
+        let request = MoviesScene.Load.Request(currentPage: currentPage)
         interactor?.doLoadMovies(request: request)
     }
     
     func displayMovies(viewModel: MoviesScene.Load.ViewModel) {
-        arrayMovies = viewModel.movies
-        print(viewModel.totalPages)
-        print(viewModel.totalResults)
+        totalPages = viewModel.totalPages
+        totalResults = viewModel.totalResults
+        updateMovie(movies: viewModel.movies)
     }
     
     func displayToMovieDetail(viewModel: MoviesScene.MoviesToMovie.ViewModel) {
         router?.routerToMovieDetail()
+    }
+    
+    fileprivate func updateMovie(movies: [Movie]) {
+        for movie in movies {
+            if !self.arrayMovies.contains(where: { $0.id == movie.id }) {
+                self.arrayMovies.append(movie)
+            }
+        }
+        moviesView.collectionView.reloadData()
     }
 }
 
@@ -111,6 +132,7 @@ extension MoviesViewController: UICollectionViewDelegate {
     }
 }
 
+//MARK: UICOLLECTION VIEW DATASOURCE
 extension MoviesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
