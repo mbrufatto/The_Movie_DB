@@ -22,9 +22,9 @@ Após a instalação abra o xcode -> File -> Open -> Selecione a pasta onde o pr
 
 Talvez seja necessário alterar a versão do swift no pod Alamofire. Para isso siga os seguintes passos:
 
-  1 - Selecione o Projet Pods;
-  2 - Selecione a Target Alamofire;
-  3 - Em Swift Language Version, mude para a versão 4.2 (pelo menos é a versão que utilizei para este projeto).
+  1 Selecione o Projet Pods;
+  2 Selecione a Target Alamofire;
+  3 Em Swift Language Version, mude para a versão 4.2 (pelo menos é a versão que utilizei para este projeto).
 
 Após o projeto aberto é só executar.
 
