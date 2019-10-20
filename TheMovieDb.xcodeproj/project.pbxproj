@@ -43,6 +43,10 @@
 		00E2EA062359157D00560966 /* MovieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00E2EA052359157D00560966 /* MovieView.xib */; };
 		00E2EA082359179500560966 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2EA072359179500560966 /* MovieView.swift */; };
 		00E2EA0A235BFF9800560966 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2EA09235BFF9800560966 /* DateExtension.swift */; };
+		00E2EA10235C045600560966 /* Screen Shot 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E2EA0C235C045500560966 /* Screen Shot 3.png */; };
+		00E2EA11235C045600560966 /* Screen Shot 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E2EA0D235C045500560966 /* Screen Shot 2.png */; };
+		00E2EA12235C045600560966 /* Screen Shot 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E2EA0E235C045500560966 /* Screen Shot 1.png */; };
+		00E2EA13235C045600560966 /* Screen Shot 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 00E2EA0F235C045600560966 /* Screen Shot 4.png */; };
 		2FB6A36148AE342BFB2C87B3 /* Pods_TheMovieDbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72521DB51101DE025AC7AB7 /* Pods_TheMovieDbTests.framework */; };
 		8A6292372FE1E6D88EB95194 /* Pods_TheMovieDb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39217EF987FD2B8CB5DF776 /* Pods_TheMovieDb.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +102,10 @@
 		00E2EA052359157D00560966 /* MovieView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieView.xib; sourceTree = "<group>"; };
 		00E2EA072359179500560966 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		00E2EA09235BFF9800560966 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		00E2EA0C235C045500560966 /* Screen Shot 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 3.png"; sourceTree = "<group>"; };
+		00E2EA0D235C045500560966 /* Screen Shot 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2.png"; sourceTree = "<group>"; };
+		00E2EA0E235C045500560966 /* Screen Shot 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 1.png"; sourceTree = "<group>"; };
+		00E2EA0F235C045600560966 /* Screen Shot 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 4.png"; sourceTree = "<group>"; };
 		332F5A3A5BAC1C251410B304 /* Pods-TheMovieDb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDb.release.xcconfig"; path = "Target Support Files/Pods-TheMovieDb/Pods-TheMovieDb.release.xcconfig"; sourceTree = "<group>"; };
 		4C4FB6C8491A7A8BE1AFF40C /* Pods-TheMovieDbTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDbTests.release.xcconfig"; path = "Target Support Files/Pods-TheMovieDbTests/Pods-TheMovieDbTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F15E06823EDE4A28ABE1A86 /* Pods-TheMovieDbTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDbTests.debug.xcconfig"; path = "Target Support Files/Pods-TheMovieDbTests/Pods-TheMovieDbTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +157,7 @@
 		004FE41E2357B6EE00B0ECDE /* TheMovieDb */ = {
 			isa = PBXGroup;
 			children = (
+				00E2EA0B235C030400560966 /* Screen Shots */,
 				004FE47423581CE600B0ECDE /* Extension */,
 				004FE43F2357BA2700B0ECDE /* Network */,
 				004FE4492357BB0300B0ECDE /* Scenes */,
@@ -288,6 +297,17 @@
 			path = xibs;
 			sourceTree = "<group>";
 		};
+		00E2EA0B235C030400560966 /* Screen Shots */ = {
+			isa = PBXGroup;
+			children = (
+				00E2EA0E235C045500560966 /* Screen Shot 1.png */,
+				00E2EA0D235C045500560966 /* Screen Shot 2.png */,
+				00E2EA0C235C045500560966 /* Screen Shot 3.png */,
+				00E2EA0F235C045600560966 /* Screen Shot 4.png */,
+			);
+			path = "Screen Shots";
+			sourceTree = "<group>";
+		};
 		00F8F7E72358B1D800D12027 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,10 +428,14 @@
 			files = (
 				004FE42A2357B6F000B0ECDE /* LaunchScreen.storyboard in Resources */,
 				004FE46F2357CFC300B0ECDE /* MoviesView.xib in Resources */,
+				00E2EA13235C045600560966 /* Screen Shot 4.png in Resources */,
 				004FE4272357B6F000B0ECDE /* Assets.xcassets in Resources */,
 				00E2EA062359157D00560966 /* MovieView.xib in Resources */,
+				00E2EA12235C045600560966 /* Screen Shot 1.png in Resources */,
+				00E2EA11235C045600560966 /* Screen Shot 2.png in Resources */,
 				004FE44E2357BB3C00B0ECDE /* HomeView.xib in Resources */,
 				004FE4732357D13700B0ECDE /* MovieViewCell.xib in Resources */,
+				00E2EA10235C045600560966 /* Screen Shot 3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

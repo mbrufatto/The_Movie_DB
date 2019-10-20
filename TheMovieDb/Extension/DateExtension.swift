@@ -15,8 +15,7 @@ extension String {
         
         let formateDate = dateFormatter.date(from:date)!
         dateFormatter.dateFormat = "dd/MM/yyyy" // Output Formated
-        
-        print ("Print :\(dateFormatter.string(from: formateDate))")//Print :02-02-2018
+
         return dateFormatter.string(from: formateDate)
     }
 }
