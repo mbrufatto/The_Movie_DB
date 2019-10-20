@@ -15,6 +15,7 @@ import UIKit
 protocol MoviesDisplayLogic: class {
     func displayMovies(viewModel: MoviesScene.Load.ViewModel)
     func displayToMovieDetail(viewModel: MoviesScene.MoviesToMovie.ViewModel)
+    func displayMoviesByName(viewModel: MoviesScene.Load.ViewModel)
 }
 
 class MoviesViewController: UIViewController, MoviesDisplayLogic {
@@ -23,6 +24,9 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
     
     let moviesView = MoviesView()
     var arrayMovies = [Movie]()
+    var arrayfilteredMovies = [Movie]()
+    
+    var searchActive: Bool = false
     
     var currentPage: Int = 1
     var totalPages: Int = 0
@@ -82,6 +86,8 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         moviesView.collectionView.dataSource = self
         moviesView.collectionView.delegate = self
         
+        moviesView.searchBar.delegate = self
+        
         loadData()
     }
     
@@ -106,6 +112,15 @@ class MoviesViewController: UIViewController, MoviesDisplayLogic {
         totalResults = viewModel.totalResults
         updateMovie(movies: viewModel.movies)
     }
+    
+    func displayMoviesByName(viewModel: MoviesScene.Load.ViewModel) {
+        totalPages = viewModel.totalPages
+        totalResults = viewModel.totalResults
+        arrayfilteredMovies = viewModel.movies
+        self.searchActive = true
+        moviesView.collectionView.reloadData()
+    }
+    
     
     func displayToMovieDetail(viewModel: MoviesScene.MoviesToMovie.ViewModel) {
         router?.routerToMovieDetail()
@@ -136,6 +151,9 @@ extension MoviesViewController: UICollectionViewDelegate {
 extension MoviesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.searchActive {
+            return self.arrayfilteredMovies.count
+        }
         return arrayMovies.count
     }
     
@@ -143,8 +161,26 @@ extension MoviesViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieViewCell.cellIdentifier, for: indexPath) as! MovieViewCell
         
-        cell.loadPoster(posterPath: arrayMovies[indexPath.row].posterPath)
+        var movie: Movie = Movie()
+        if self.searchActive {
+            movie = arrayfilteredMovies[indexPath.row]
+        } else {
+            movie = arrayMovies[indexPath.row]
+        }
+        cell.loadPoster(posterPath: movie.posterPath)
         
         return cell
+    }
+}
+
+extension MoviesViewController: UISearchBarDelegate {
+    func searchBar(_: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            let request = MoviesScene.LoadMovieByName.Request(title: searchText)
+            interactor?.doLoadMovieByName(request: request)
+        } else {
+            searchActive = false
+            loadData()
+        }
     }
 }

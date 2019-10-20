@@ -15,6 +15,7 @@ import UIKit
 protocol MoviesBusinessLogic {
     func doLoadMovies(request: MoviesScene.Load.Request)
     func doLoadMovieDetail(request: MoviesScene.MoviesToMovie.Request)
+    func doLoadMovieByName(request: MoviesScene.LoadMovieByName.Request)
 }
 
 protocol MoviesDataStore {
@@ -52,5 +53,16 @@ class MoviesInteractor: MoviesBusinessLogic, MoviesDataStore {
         self.movie = request.movie
         let response = MoviesScene.MoviesToMovie.Response(movie: request.movie)
         presenter?.presentMovieDetail(response: response)
+    }
+    
+    func doLoadMovieByName(request: MoviesScene.LoadMovieByName.Request) {
+        worker = MoviesWorker()
+        worker?.doRequestMoviesByName(title: request.title) { movieBase in
+            self.movies = movieBase.movies
+            self.totalPages = movieBase.totalPages
+            self.totalResults = movieBase.totalResults
+            let response = MoviesScene.Load.Response(totalPages: self.totalPages!, totalResults: self.totalResults!, movies: movieBase.movies)
+            self.presenter?.presentMovieByName(response: response)
+        }
     }
 }

@@ -12,6 +12,7 @@ class MoviesView: UIView {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

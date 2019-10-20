@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesView" customModule="TheMovieDb" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Wio-V7-SNr" id="G4s-Am-ue2"/>
+                <outlet property="searchBar" destination="Y3S-Bj-Pwl" id="ak1-Xr-a2e"/>
                 <outlet property="view" destination="iN0-l3-epB" id="rCo-L6-ise"/>
             </connections>
         </placeholder>

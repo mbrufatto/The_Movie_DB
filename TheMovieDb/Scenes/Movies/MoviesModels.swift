@@ -42,4 +42,10 @@ enum MoviesScene {
             let movie: Movie
         }
     }
+    
+    enum LoadMovieByName {
+        struct Request {
+            let title: String
+        }
+    }
 }

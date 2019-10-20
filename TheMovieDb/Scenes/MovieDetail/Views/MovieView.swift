@@ -22,7 +22,7 @@ class MovieView: UIView {
             movieName.text = movie?.originalTitle
             guard let poster = movie?.backdropPath else { return }
             moviePoster.getImage(urlImage: "https://image.tmdb.org/t/p/original\(poster)")
-            releaseDate.text = movie?.releaseDate
+            releaseDate.text = String.getFormattedDate(date: (movie?.releaseDate)!)
             formatterText(overview: (movie?.overview)!)
             loadGenres(movie: movie!)
         }
