@@ -15,6 +15,7 @@ import UIKit
 protocol MoviesPresentationLogic {
     func presentMovies(response: MoviesScene.Load.Response)
     func presentMovieDetail(response: MoviesScene.MoviesToMovie.Response)
+    func presentMovieByName(response: MoviesScene.Load.Response)
 }
 
 class MoviesPresenter: MoviesPresentationLogic {
@@ -30,5 +31,10 @@ class MoviesPresenter: MoviesPresentationLogic {
     func presentMovieDetail(response: MoviesScene.MoviesToMovie.Response) {
         let viewModel = MoviesScene.MoviesToMovie.ViewModel(movie: response.movie)
         viewController?.displayToMovieDetail(viewModel: viewModel)
+    }
+    
+    func presentMovieByName(response: MoviesScene.Load.Response) {
+        let viewModel = MoviesScene.Load.ViewModel(totalPages: response.totalPages, totalResults: response.totalResults ,movies: response.movies)
+        viewController?.displayMoviesByName(viewModel: viewModel)
     }
 }

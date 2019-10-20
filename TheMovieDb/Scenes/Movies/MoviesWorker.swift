@@ -18,4 +18,10 @@ class MoviesWorker {
             completion(movies)
         }
     }
+    
+    func doRequestMoviesByName(title: String, completion: @escaping(MovieBase) -> Void) {
+        NetworkManager.shared.fetchMovieByName(name: title) { movieBase in
+            completion(movieBase)
+        }
+    }
 }
